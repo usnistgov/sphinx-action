@@ -127,8 +127,7 @@ def build_docs(build_command, docs_directory):
         build_command += shlex.split(sphinx_options)
         print("[sphinx-action] Running: {}".format(build_command))
 
-        return_code = subprocess.call(
-            build_command + shlex.split(sphinx_options), cwd=docs_directory
+        return_code = subprocess.call(build_command, cwd=docs_directory
         )
     
     if os.path.exists(log_file):
