@@ -1,7 +1,7 @@
 # Sphinx Build Action
 
-[![Build Status](https://travis-ci.org/ammaraskar/sphinx-action.svg?branch=master)](https://travis-ci.org/ammaraskar/sphinx-action)
-[![Test Coverage](https://codecov.io/gh/ammaraskar/sphinx-action/branch/master/graph/badge.svg)](https://codecov.io/gh/ammaraskar/sphinx-action)
+[![Build Status](https://travis-ci.org/usnistgov/sphinx-action.svg?branch=master)](https://travis-ci.org/usnistgov/sphinx-action)
+[![Test Coverage](https://codecov.io/gh/usnistgov/sphinx-action/branch/master/graph/badge.svg)](https://codecov.io/gh/usnistgov/sphinx-action)
 
 
 This is a Github action that looks for Sphinx documentation folders in your
@@ -31,7 +31,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - uses: ammaraskar/sphinx-action@master
+    - uses: usnistgov/sphinx-action@master
       with:
         docs-folder: "docs/"
 ```
@@ -61,23 +61,15 @@ You can use these to make built HTML and PDFs available as artifacts:
         path: docs/_build/html/
 ```
 
-Or to push docs changes automatically to a `gh-pages` branch:
+Or to push docs changes automatically to a `nist-pages` branch:
 
 <details><summary>Code for your workflow</summary>
 <p>
 
 ```yaml
-    - name: Commit documentation changes
-      run: |
-        git clone https://github.com/your_git/repository.git --branch gh-pages --single-branch gh-pages
-        cp -r docs/_build/html/* gh-pages/
-        cd gh-pages
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add .
-        git commit -m "Update documentation" -a || true
-        # The above command will fail if no changes were present, so we ignore
-        # the return code.
+    - uses: usnistgov/NISTtheDocs2Death@main
+      with:
+        docs-folder: docs/
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
@@ -99,7 +91,7 @@ If you wish to customize the command used to build the docs (defaults to
 example, to invoke sphinx-build directly you can use:
 
 ```yaml
-    - uses: ammaraskar/sphinx-action@master
+    - uses: usnistgov/sphinx-action@master
       with:
         docs-folder: "docs/"
         build-command: "sphinx-build -b html . _build"
@@ -109,7 +101,7 @@ If there's system level dependencies that need to be installed for your
 build, you can use the `pre-build-command` argument like so:
 
 ```yaml
-    - uses: ammaraskar/sphinx-action@master
+    - uses: usnistgov/sphinx-action@master
       with:
         docs-folder: "docs2/"
         pre-build-command: "apt-get update -y && apt-get install -y latexmk texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended"
