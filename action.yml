@@ -14,7 +14,7 @@ inputs:
     description:
       The command used to build your documentation.
     required: false
-    default: make html
+    default: make latexpdf
   pre-build-command:
     description:
       Run before the build command, you can use this to install system level
