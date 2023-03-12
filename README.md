@@ -63,25 +63,13 @@ You can use these to make built HTML and PDFs available as artifacts:
 
 Or to push docs changes automatically to a `nist-pages` branch:
 
-<details><summary>Code for your workflow</summary>
-<p>
-
 ```yaml
     - uses: usnistgov/NISTtheDocs2Death@main
       with:
         docs-folder: docs/
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        branch: gh-pages
-        directory: gh-pages
-        github_token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-</p>
-</details>
-
-For a full fledged example of this in action take a look at:
+For a full fledged example of an older version of this in action take a look at:
 https://github.com/ammaraskar/sphinx-action-test
 
 ## Advanced Usage
