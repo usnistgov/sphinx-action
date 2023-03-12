@@ -1,12 +1,18 @@
 # Sphinx Build Action
 
-[![Build Status](https://travis-ci.org/usnistgov/sphinx-action.svg?branch=master)](https://travis-ci.org/usnistgov/sphinx-action)
-[![Test Coverage](https://codecov.io/gh/usnistgov/sphinx-action/branch/master/graph/badge.svg)](https://codecov.io/gh/usnistgov/sphinx-action)
+[![Build Status](https://travis-ci.org/usnistgov/sphinx-action.svg?branch=latexpdf)](https://travis-ci.org/usnistgov/sphinx-action)
+[![Test Coverage](https://codecov.io/gh/usnistgov/sphinx-action/branch/latexpdf/graph/badge.svg)](https://codecov.io/gh/usnistgov/sphinx-action)
 
 
 This is a Github action that looks for Sphinx documentation folders in your
 project. It builds the documentation using Sphinx and any errors in the build
 process are bubbled up as Github status checks.
+
+This action differs from `usnistgov/sphinx-action@master` in that the Docker
+image is based on `sphinxdoc/sphinx-latexpdf`, which is considerably larger
+(over 2 GB). If you will be building both LaTeX and HTML or ePUB variants, this
+action can be used for all. If LaTeX is not desired,
+`usnistgov/sphinx-action@master` is recommended.
 
 The main purposes of this action are:
 
@@ -31,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - uses: usnistgov/sphinx-action@master
+    - uses: usnistgov/sphinx-action@latexpdf
       with:
         docs-folder: "docs/"
 ```
@@ -79,17 +85,17 @@ If you wish to customize the command used to build the docs (defaults to
 example, to invoke sphinx-build directly you can use:
 
 ```yaml
-    - uses: usnistgov/sphinx-action@master
+    - uses: usnistgov/sphinx-action@latexpdf
       with:
         docs-folder: "docs/"
-        build-command: "sphinx-build -b html . _build"
+        build-command: "sphinx-build -b latex . _build"
 ```
 
 If there's system level dependencies that need to be installed for your
 build, you can use the `pre-build-command` argument like so:
 
 ```yaml
-    - uses: usnistgov/sphinx-action@master
+    - uses: usnistgov/sphinx-action@latexpdf
       with:
         docs-folder: "docs2/"
         pre-build-command: "apt-get update -y && apt-get install -y latexmk texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended"
