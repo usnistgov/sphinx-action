@@ -8,11 +8,16 @@ This is a Github action that looks for Sphinx documentation folders in your
 project. It builds the documentation using Sphinx and any errors in the build
 process are bubbled up as Github status checks.
 
-This action differs from `usnistgov/sphinx-action@master` in that the Docker
-image is based on `sphinxdoc/sphinx-latexpdf`, which is considerably larger
-(over 2 GB). If you will be building both LaTeX and HTML or ePUB variants, this
-action can be used for all. If LaTeX is not desired,
-`usnistgov/sphinx-action@master` is recommended.
+This action differs from
+[`usnistgov/sphinx-action@master`](https://github.com/usnistgov/sphinx-action/tree/master)
+in that the Docker image is based on
+[`sphinxdoc/sphinx-latexpdf`](https://github.com/sphinx-doc/docker/blob/master/latexpdf/Dockerfile),
+which is considerably larger (over 2 GB) than 
+[`sphinxdoc/sphinx`](https://github.com/sphinx-doc/docker/blob/master/base/Dockerfile).
+If you will be building both LaTeX and HTML or ePUB variants, this action can
+be used for all. If LaTeX is not desired,
+[`usnistgov/sphinx-action@master`](https://github.com/usnistgov/sphinx-action/tree/master)
+is recommended.
 
 The main purposes of this action are:
 
