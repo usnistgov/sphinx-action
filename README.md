@@ -41,7 +41,7 @@ jobs:
   docs:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v3
     - uses: usnistgov/sphinx-action@latexpdf
       with:
         docs-folder: "docs/"
@@ -66,10 +66,10 @@ and [`ad-m/github-push-action`](https://github.com/ad-m/github-push-action).
 You can use these to make built HTML and PDFs available as artifacts:
 
 ```yaml
-    - uses: actions/upload-artifact@v1
+    - uses: actions/upload-artifact@v3
       with:
-        name: DocumentationHTML
-        path: docs/_build/html/
+        name: DocumentationPDF
+        path: docs/_build/latex/*.pdf
 ```
 
 Or to push docs changes automatically to a `nist-pages` branch:
@@ -86,7 +86,7 @@ https://github.com/ammaraskar/sphinx-action-test
 ## Advanced Usage
 
 If you wish to customize the command used to build the docs (defaults to
-`make html`), you can provide a `build-command` in the `with` block. For
+`make latexpdf`), you can provide a `build-command` in the `with` block. For
 example, to invoke sphinx-build directly you can use:
 
 ```yaml
@@ -103,8 +103,7 @@ build, you can use the `pre-build-command` argument like so:
     - uses: usnistgov/sphinx-action@latexpdf
       with:
         docs-folder: "docs2/"
-        pre-build-command: "apt-get update -y && apt-get install -y latexmk texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended"
-        build-command: "make latexpdf"
+        pre-build-command: "apt-get update -y && apt-get install -y texlive-bibtex-extra texlive-games texlive-lang-african"
 ```
 
 ## Running the tests
