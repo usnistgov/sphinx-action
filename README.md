@@ -50,12 +50,12 @@ at https://github.com/ammaraskar/sphinx-action-test
 
 Some really good actions that work well with this one are
 [`actions/upload-artifact`](https://github.com/actions/upload-artifact)
-and [`ad-m/github-push-action`](https://github.com/ad-m/github-push-action).
+and [`usnistgov/NISTtheDocs2Death`](https://github.com/usnistgov/NISTtheDocs2Death).
 
 You can use these to make built HTML and PDFs available as artifacts:
 
 ```yaml
-    - uses: actions/upload-artifact@v1
+    - uses: actions/upload-artifact@3
       with:
         name: DocumentationHTML
         path: docs/_build/html/
@@ -94,6 +94,15 @@ build, you can use the `pre-build-command` argument like so:
         docs-folder: "docs2/"
         pre-build-command: "apt-get update -y && apt-get install -y latexmk texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended"
         build-command: "make latexpdf"
+```
+
+although a more expedient way to build LaTeX documentation is to use
+[`usnistgov/sphinx-action@latexpdf`](https://github.com/usnistgov/sphinx-action/tree/latexpdf/)
+
+```yaml
+    - uses: usnistgov/sphinx-action@latexpdf
+      with:
+        docs-folder: "docs2/"
 ```
 
 ## Running the tests
