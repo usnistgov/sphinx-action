@@ -7,6 +7,18 @@ from sphinx_action import action
 # Github specific setup is done here to make it easy to test the action code
 # in isolation.
 if __name__ == "__main__":
+    requirements = os.environ['INPUT_PIP-REQUIREMENTS']
+    if requirements != "" and os.path.exists(requirements)::
+        print("[sphinx-action] Installing pip requirements.")
+        subprocess.check_call(["pip", "install", "-r", requirements])
+
+    environment = os.environ['INPUT_CONDA-ENVIRONMENT']
+    if environment!= "" and os.path.exists(environment):
+        print("[sphinx-action] Installing conda environment.")
+        subprocess.check_call(["conda", "env", "update",
+                               "--name", "base",
+                               "--file", environment])
+
     print("[sphinx-action] Starting sphinx-action build.")
 
     if "INPUT_PRE-BUILD-COMMAND" in os.environ:
