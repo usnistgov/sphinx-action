@@ -34,7 +34,7 @@ Create a workflow for the action, for example:
 
 ```yaml
 name: "Pull Request Docs Check"
-on: 
+on:
 - pull_request
 
 jobs:
@@ -48,8 +48,25 @@ jobs:
 ```
 
 * If you have any Python dependencies that your project needs (themes, 
-build tools, etc) then place them in a requirements.txt file inside your docs
-folder.
+build tools, etc) in either a `requirements.txt` or `environment.yml` file
+inside your docs folder, you can direct they be installed with
+
+```yaml
+name: "Pull Request Docs Check"
+on:
+- pull_request
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: usnistgov/sphinx-action@master
+      with:
+        docs-folder: "docs/"
+        pip-requirements: "docs/requirements.txt"
+        conda-environment: "docs/environment.yml"
+```
 
 * If you have multiple sphinx documentation folders, please use multiple
   `uses` blocks.
