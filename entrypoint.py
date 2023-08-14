@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import os
 import json
+import subprocess
 from sphinx_action import action
 
 # This is the entrypoint called by Github when our action is run. All the
