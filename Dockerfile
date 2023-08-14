@@ -14,6 +14,8 @@ RUN apt-get update \
 
 ADD environment.yml /environment.yml
 
+RUN conda config --set solver libmamba
+RUN conda update -n base -c defaults conda
 RUN conda env update --name base --file /environment.yml
 
 ADD entrypoint.py /entrypoint.py
