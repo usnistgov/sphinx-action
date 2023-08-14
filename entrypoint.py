@@ -8,7 +8,7 @@ from sphinx_action import action
 # in isolation.
 if __name__ == "__main__":
     requirements = os.environ['INPUT_PIP-REQUIREMENTS']
-    if requirements != "" and os.path.exists(requirements)::
+    if requirements != "" and os.path.exists(requirements):
         print("[sphinx-action] Installing pip requirements.")
         subprocess.check_call(["pip", "install", "-r", requirements])
 
